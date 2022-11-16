@@ -8,9 +8,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.*;
 import javax.ws.rs.*;
-// import org.eclipse.microprofile.config.Config;
-// import org.eclipse.microprofile.config.ConfigProvider;
-// import org.eclipse.microprofile.config.inject.ConfigProperty;
 @Path("/configurations")
 public class ConfigLoggerResource {
     
@@ -36,6 +33,7 @@ public class ConfigLoggerResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String getConfigMaps() {
         System.out.println("List of Config Maps is: "+ configMapsList);
+        System.out.println("List of Config Maps are: "+ configMapsList);
         return "List of Config Maps is: "+ configMapsList;
     }
 
