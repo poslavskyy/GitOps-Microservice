@@ -9,11 +9,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.*;
 import javax.ws.rs.*;
 @Path("/injection")
-public class ConfigLoggerResource {
-    
-
-    // Config config = ConfigProvider.getConfig();
-    // Map configValues = config.getValue("config.gitops-microservice-build.data", Map.class);
+public class ConfigInjection {
 
     @ConfigProperty(name = "quarkus.kubernetes-client.namespace") 
     String namespace;
