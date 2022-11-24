@@ -1,3 +1,5 @@
+package ca.gc.cra.rcsc.config;
+
 import io.smallrye.config.ConfigMapping;
 import io.smallrye.config.WithDefault;
 import java.util.Optional;
@@ -15,7 +17,7 @@ public interface InterfaceConfiguration {
 
     interface PocTeamDeets {
         String name();
-        String developerCount();
+        String gitopsDeveloperCount();
     }
 
     interface PocPhaseDeets {

@@ -1,6 +1,9 @@
 package ca.gc.cra.rcsc;
 
-import org.json.simple.JSONObject;
+import org.eclipse.microprofile.config.Config;
+import org.eclipse.microprofile.config.ConfigProvider;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import java.util.Optional;
 import javax.ws.rs.GET;
@@ -19,27 +22,30 @@ public class ProgrammaticAccess {
     @Produces(MediaType.TEXT_PLAIN)
     public String getProperties() {
         // Config config = ConfigProvider.getConfig();
-        String configMaps = config.getValue("quarkus.openshift.env.configmaps", String[].class);
-        String secrets = config.getValue("quarkus.openshift.env.configmaps", String[].class);
+        String configMaps = config.getValue("quarkus.openshift.env.configmaps", String.class);
+        String secrets = config.getValue("quarkus.openshift.env.configmaps", String.class);
         String namespace = config.getValue("quarkus.kubernetes-client.namespace", String.class);
         String swagger = config.getValue("quarkus.swagger-ui.always-include", String.class);
         String data = config.getValue("config.gitops-microservice-build.data",String.class);
-        JSONObject properties = new JSONObject();
+        
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode properties = mapper.createObjectNode();
         properties.put("quarkus.openshift.env.configmaps",configMaps);
         properties.put("quarkus.kubernetes-client.namespace",namespace);
         properties.put("quarkus.swagger-ui.always-include",swagger);
         properties.put("config.gitops-microservice-build.data",data);
         properties.put("quarkus.openshift.env.secrets",secrets);
+        
         String toReturn = "List of few application properties accessed programmatically is:  "+ properties;
         System.out.println(toReturn);
-        return toReturn;
+        return properties.toString();
     }
 
      @GET
     @Path("/config-maps")
     @Produces(MediaType.TEXT_PLAIN)
     public String getConfigMaps() {
-        String configMaps = config.getValue("quarkus.openshift.env.configmaps", String[].class);
+        String configMaps = config.getValue("quarkus.openshift.env.configmaps", String.class);
         System.out.println("List of Config Maps is: "+ configMaps);
         return "List of Config Maps is: "+ configMaps;
     }
@@ -64,7 +70,7 @@ public class ProgrammaticAccess {
     @Path("/secrets")
     @Produces(MediaType.TEXT_PLAIN)
     public String getSecrets() {
-        String secrets = config.getValue("quarkus.openshift.env.configmaps", String[].class);
+        String secrets = config.getValue("quarkus.openshift.env.configmaps", String.class);
         System.out.println("List of Secrets is: "+ secrets);
         return "List of Secrets is: "+ secrets;
     }
