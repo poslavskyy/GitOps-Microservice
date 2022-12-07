@@ -70,7 +70,7 @@ public class ProgrammaticAccess {
     @Path("/secrets")
     @Produces(MediaType.TEXT_PLAIN)
     public String getSecrets() {
-        String secrets = config.getValue("quarkus.openshift.env.configmaps", String.class);
+        String secrets = config.getValue("quarkus.openshift.env.secrets", String.class);
         System.out.println("List of Secrets is: "+ secrets);
         return "List of Secrets is: "+ secrets;
     }
