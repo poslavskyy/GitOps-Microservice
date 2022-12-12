@@ -47,7 +47,6 @@ public class ConfigInjection {
             case "gitops-microservice-build" :
                 String plainGitopsMicroserviceBuildData = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(gitopsMicroserviceBuildData);
                 message = "Data from "+name+ " is \n"+plainGitopsMicroserviceBuildData;
-                System.out.println("properties.build field is: "+ gitopsMicroserviceBuildData.get("properties.build").asText());
                 break;
             default:
                 message = "Provided config map does not exist";
