@@ -33,6 +33,8 @@ public class ConfigInjection {
     @Produces(MediaType.TEXT_PLAIN)
     public String getConfigMaps() {
         System.out.println("List of Config Maps is: "+ configMapsList);
+        System.out.println("Testing Succeded");
+
         return "List of Config Maps is: "+ configMapsList;
     }
 
