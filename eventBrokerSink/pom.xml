@@ -86,7 +86,7 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-rest-client-jackson</artifactId>
-    </dependency>
+    </dependency>lean 
     <dependency>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-container-image-jib</artifactId>
